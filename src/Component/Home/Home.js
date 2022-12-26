@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import { Navigate } from "react-router-dom";
 import styles from "./Home.module.css";
-
+import { useNavigate } from "react-router-dom";
+import Details from "../Details/Details";
 export default function Home() {
   let [trendingMovies, setTrendingMovies] = useState([]);
   let [trendingTv, setTrendingTv] = useState([]);
@@ -20,6 +21,17 @@ export default function Home() {
     // setTrendingPerson(data);
     console.log(data);
   }
+let navigate =useNavigate();
+ function goToDetails(id){
+//alert(id);
+ navigate(
+  {
+    pathname:'/details',
+    search:`?id=${id}`,
+
+  }
+ )
+ } 
 
   useEffect(() => {
     getTrendingMovies("movie", setTrendingMovies);
@@ -40,7 +52,7 @@ export default function Home() {
         {trendingMovies.length == 0
           ? "loadind"
           : trendingMovies.results.map((movie, idx) => (
-              <div className="col-md-4 my-3" key={idx}>
+              <div onClick={()=>goToDetails(movie.id)} className="col-md-4 my-3" key={idx}>
                 <div className="text-center">
                   {<img src={prefix + movie.poster_path} className=" w-75" />}
                   <h3 className="mt-3">{movie.title} </h3>
@@ -82,13 +94,12 @@ export default function Home() {
           : trendingPerson.results.map((person, idx) => (
               <div className="col-md-4 my-3" key={idx}>
                 <div className="text-center">
-                {<img src={prefix + person.profile_path} className=" w-75" />}  
+                  {<img src={prefix + person.profile_path} className=" w-75" />}
                   <h3 className="mt-3">{person.name} </h3>
                 </div>
               </div>
             ))}
       </div>
-
     </>
   );
 }

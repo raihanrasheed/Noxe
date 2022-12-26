@@ -1,14 +1,14 @@
-
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import Login from './../Login/Login';
 
 export default function ProtectedRoutes({loginData}) {
-
+ console.log(loginData)
   return (
-    <div>
-{loginData? <Outlet/>: <Navigate to='Login'/>}
+    <>
+   
+{loginData? <Outlet/>: <Navigate to='login'/>}
 
-    </div>
+   </>
   )
 }

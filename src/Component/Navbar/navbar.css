@@ -1,0 +1,25 @@
+
+.l{
+    color: beige;
+    padding-left: 900px;
+     text-decoration: none;
+}
+.navbarr{
+    text-decoration: none; 
+    padding-left:33 px;
+    
+}
+.nav-item active{
+    list-style-type: none;
+}
+li{
+    display: block;
+    margin-right: 30px;
+    
+}
+
+.nav-link{
+    color: rgb(116, 35, 35);
+    margin-right: 11px;
+    padding-left: 11px;
+}
